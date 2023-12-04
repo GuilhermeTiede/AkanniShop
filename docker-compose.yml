@@ -6,7 +6,7 @@ services:
     image: wordpress
     container_name: wordpressakanni
     ports:
-      - "78.142.242.175:8081:81"
+      - "78.142.242.175:8181:80"
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_USER: wordpress_user
