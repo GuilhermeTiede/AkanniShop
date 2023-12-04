@@ -1,30 +1,25 @@
 version: '3.8'
+
 services:
 
-  db:
-    image: mysql:latest
-    volumes:
-      - db_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: Siimmpplles99@
-      MYSQL_DATABASE: wpakanni
-      MYSQL_USER: wpakanni
-      MYSQL_PASSWORD: Siimmpplles99@
-  
   wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    volumes:
-      - wordpress_data:/var/www/html
+    image: wordpress
+    container_name: wordpressakanni
     ports:
-      - ""
-    restart: always
+      - "78.142.242.175:8081:81"
     environment:
-      WORDPRESS_DB_HOST: wpakanni.mysql.dbaas.com.br
-      WORDPRESS_DB_USER: wordpress_db_user
-      WORDPRESS_DB_PASSWORD: wordpress_db_password
-      WORDPRESS_DB_NAME: wordpress_local
-volumes:
-  db_data: {}
-  wordpress_data: {}
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress_user
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress_db
+
+  mysql:
+    image: mysql
+    container_name: mysqlakanni
+    ports:
+      - "78.142.242.175:3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_root_password
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wordpress_user
+      MYSQL_PASSWORD: wordpress_password
